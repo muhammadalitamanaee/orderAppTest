@@ -1,5 +1,5 @@
 import SummaryForm from "../SummaryForm";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 describe("the test for the summary form ", () => {
   test("the initail state of a btn and checkbox", () => {
@@ -35,7 +35,7 @@ describe("the test for the summary form ", () => {
     });
   test("popover response to hover", async () => {
     render(<SummaryForm />);
-    const user = userEvent.setup();
+    const { hover, unhover } = userEvent.setup();
     //popover starts hidden
     const nullPopOver = screen.queryByText(
       /No ice cream will actually be delivered/i
@@ -43,14 +43,14 @@ describe("the test for the summary form ", () => {
     expect(nullPopOver).not.toBeInTheDocument();
     //popover appear on screen
     const termsAndConditions = screen.getByText(/terms and conditions/i);
-    await user.hover(termsAndConditions);
+    await hover(termsAndConditions);
     const popover = screen.getByText(
       /No ice cream will actually be delivered/i
     );
     expect(popover).toBeInTheDocument();
 
     //popover goes away again
-    await user.unhover(termsAndConditions);
+    await unhover(termsAndConditions);
     expect(popover).not.toBeInTheDocument();
   });
 });
