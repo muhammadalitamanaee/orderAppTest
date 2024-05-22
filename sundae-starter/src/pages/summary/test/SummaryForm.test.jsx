@@ -1,7 +1,7 @@
 import SummaryForm from "../SummaryForm";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-describe("the test for the summary form ", () => {
+describe("the test for the summary form", () => {
   test("the initail state of a btn and checkbox", () => {
     render(<SummaryForm />);
     const checkbox = screen.getByRole("checkbox", {
